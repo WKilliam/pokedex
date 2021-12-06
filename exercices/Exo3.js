@@ -67,9 +67,10 @@ const Exo3 = () => {
 };
 
 let texteur = param => {
-  const showAlert = param => {
-    Alert.alert('Bonjour ' + param);
+  const showAlert = name => {
+    Alert.alert('Bonjour ' + name);
   };
+
   return (
     <TouchableOpacity onPress={showAlert(param)} style={styles.button}>
       <Text>Alert</Text>
@@ -77,7 +78,6 @@ let texteur = param => {
   );
 };
 
-// eslint-disable-next-line no-undef
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#4ba37b',

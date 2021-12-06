@@ -7,17 +7,9 @@
  */
 
 import React from 'react';
-//import Exo1 from './exercices/Exo1';
-import Exo3 from './exercices/Exo3';
 
 const App = () => {
-  return (
-    <>
-      {/*<Exo1 />*/}
-      {/*<Exo2 />*/}
-      <Exo3 />
-    </>
-  );
+  return <></>;
 };
 
 export default App;
