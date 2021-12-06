@@ -7,12 +7,26 @@ import {
   View,
   TextInput,
   Image,
-  Button,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 const onSubmit = () => {
   console.log('Touched');
+
+  Alert.alert(
+    'Inscription',
+    'Inscription enregistrée',
+    [
+      {
+        text: 'Fermer',
+        style: 'cancel',
+      },
+    ],
+    {
+      cancelable: true,
+    },
+  );
 };
 
 const Exo2 = () => {
