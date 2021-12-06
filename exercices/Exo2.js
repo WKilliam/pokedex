@@ -4,11 +4,11 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  View,
   TextInput,
   Image,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from 'react-native';
 
 const onSubmit = () => {
@@ -32,7 +32,9 @@ const onSubmit = () => {
 const Exo2 = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.formulaireView}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.formulaireView}>
         <Text style={styles.title}>Inscription</Text>
         <Image
           source={{
@@ -55,7 +57,7 @@ const Exo2 = () => {
         <TouchableOpacity style={styles.submitButton} onPress={onSubmit}>
           <Text style={styles.submitButtonText}>Envoyer</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     display: 'flex',
     justifyContent: 'center',
+    marginTop: 20,
   },
   profileImg: {
     width: 150,
@@ -76,6 +79,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 3,
     borderColor: 'lightgrey',
+    marginTop: 40,
   },
   inputs: {
     height: 40,
@@ -83,13 +87,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     borderColor: 'darkgrey',
     padding: 6,
+    marginTop: 40,
     borderRadius: 3,
   },
   formulaireView: {
     width: '100%',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    flex: 1,
   },
   submitButton: {
     borderColor: 'grey',
@@ -99,6 +102,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: '40%',
     padding: 2,
+    marginTop: 40,
+    marginBottom: 20,
   },
   submitButtonText: {
     textTransform: 'uppercase',
