@@ -10,18 +10,17 @@ import React from 'react';
 // Redux Imports
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-
+import Routes from './navigation/Routes';
 // Modify to add persistor
 import {store, persistor} from './services/redux/store/index';
 
 // Components import
-import ListPokemons from './view/ListPokemons';
 
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ListPokemons />
+      <Routes />
       </PersistGate>
     </Provider>
   );
