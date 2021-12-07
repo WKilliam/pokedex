@@ -1,26 +1,10 @@
-import React, {useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {getPokemons} from '../services/redux/actions';
-import {useEffect} from 'react';
+import React from 'react';
+import {FlatList, SafeAreaView, Text} from 'react-native';
+import {useSelector} from 'react-redux';
+
 
 const ListPokemons = () => {
-  const dispatch = useDispatch();
   const {pokemons} = useSelector(state => state.pokemonsReducer);
-  const [isLoading, setIsLoading] = useState(true)
-
-  const fetchPokemons = async () => await dispatch(getPokemons())
-
-  useEffect(() => {
-    if(!isLoading)
-        fetchPokemons();
-
-    setIsLoading(false)
-
-    console.log('Pokemons List : ', pokemons);
-  }, [pokemons]);
-
-  if(isLoading) return <View><Text>Loading...</Text></View>
 
   return (
       <SafeAreaView>

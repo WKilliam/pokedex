@@ -6,24 +6,37 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 // Redux Imports
-import {Provider} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import Routes from './navigation/Routes';
 // Modify to add persistor
-import {store, persistor} from './services/redux/store/index';
-
-// Components import
+import {persistor} from './services/redux/store/index';
+import {getPokemons} from "./services/redux/actions";
+import {Text, View} from "react-native";
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Routes />
-      </PersistGate>
-    </Provider>
-  );
+
+    const dispatch = useDispatch();
+    const fetchPokemons = async () => await dispatch(getPokemons());
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        if (!isLoading)
+            fetchPokemons();
+
+        setIsLoading(false)
+    }, [isLoading]);
+
+    return (
+        <PersistGate loading={null} persistor={persistor}>
+            {isLoading ? <View><Text>Loading ....</Text></View> :
+                <Routes/>
+            }
+        </PersistGate>
+    );
 };
 
 export default App;
