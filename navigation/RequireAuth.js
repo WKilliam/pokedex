@@ -14,9 +14,9 @@ function RequireAuthNavigation() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen
-        name="Home"
+        name="Login"
         component={HomeScreen}
         options={{title: 'Welcome'}}
       />
