@@ -20,7 +20,7 @@ const ListPokemons = () => {
     console.log('Pokemons List : ', pokemons);
   }, [pokemons]);
 
-  if(isLoading) return <View/>
+  if(isLoading) return <View><Text>Loading...</Text></View>
 
   return (
       <SafeAreaView>

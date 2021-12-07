@@ -9,7 +9,7 @@ function AppNavigation() {
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
-        component={<ListPokemons />}
+        component={ListPokemons}
         options={{title: 'Welcome'}}
       />
     </Stack.Navigator>
