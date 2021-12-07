@@ -1,18 +1,17 @@
 import {FlatList, SafeAreaView, Text} from 'react-native';
-import {PokemonService} from '../services/api/pokemon';
-import {useEffect, useState} from 'react';
+//import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPokemons} from '../services/redux/actions';
+import {useEffect} from 'react';
 
 const ListPokemons = () => {
-  const [pokemons, setPokemons] = useState(null);
+  const dispatch = useDispatch();
+  const fetchPokemons = () => dispatch(getPokemons());
+
+  const {pokemons} = useSelector(state => state.pokemonsReducer);
 
   useEffect(() => {
-    async function getPokemons() {
-      const allPokemons = await PokemonService.getPokemons();
-      setPokemons(allPokemons);
-    }
-
-    getPokemons();
-
+    fetchPokemons();
     console.log('Pokemons List : ', pokemons);
   }, []);
 
