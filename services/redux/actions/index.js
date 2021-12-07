@@ -5,8 +5,7 @@ export const getPokemons = () => {
   try {
     return async dispatch => {
       const response = await PokemonService.getPokemons();
-      if (response.data) {
-        console.log('Datas : ', response.data);
+      if (response.results) {
         dispatch({
           type: GET_POKEMONS,
           payload: response.data,
