@@ -6,6 +6,7 @@
  * @flow strict-local
  */
 
+import React from 'react';
 // Redux Imports
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';

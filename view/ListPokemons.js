@@ -1,8 +1,8 @@
 import {FlatList, SafeAreaView, Text} from 'react-native';
-//import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPokemons} from '../services/redux/actions';
 import {useEffect} from 'react';
+import pokemonsReducer from '../services/redux/reducers';
 
 const ListPokemons = () => {
   const dispatch = useDispatch();

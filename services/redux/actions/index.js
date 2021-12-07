@@ -6,6 +6,7 @@ export const getPokemons = () => {
     return async dispatch => {
       const response = await PokemonService.getPokemons();
       if (response.data) {
+        console.log('Datas : ', response.data);
         dispatch({
           type: GET_POKEMONS,
           payload: response.data,
