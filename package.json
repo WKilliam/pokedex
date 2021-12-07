@@ -14,7 +14,9 @@
     "@react-native-firebase/auth": "^13.1.0",
     "axios": "^0.24.0",
     "react": "17.0.2",
-    "react-native": "0.66.3"
+    "react-native": "0.66.3",
+    "react-native-dotenv": "^3.3.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
