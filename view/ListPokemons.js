@@ -1,30 +1,38 @@
-import React from 'react';
-import {FlatList, SafeAreaView, Text} from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPokemons} from '../services/redux/actions';
 import {useEffect} from 'react';
 
 const ListPokemons = () => {
   const dispatch = useDispatch();
-  const fetchPokemons = () => dispatch(getPokemons());
+  const {pokemons} = useSelector(state => state.pokemonsReducer);
+  const [isLoading, setIsLoading] = useState(true)
 
-  const {pokemons} = useSelector(state => state.pokemons);
+  const fetchPokemons = async () => await dispatch(getPokemons())
 
   useEffect(() => {
-    fetchPokemons();
+    if(!isLoading)
+        fetchPokemons();
+
+    setIsLoading(false)
+
     console.log('Pokemons List : ', pokemons);
-  }, []);
+  }, [pokemons]);
+
+  if(isLoading) return <View/>
 
   return (
-    <SafeAreaView>
-      <FlatList
-        data={[1, 2]}
-        renderItem={({item, index}) => {
-          return <Text ref={index}>{item}</Text>;
-        }}
-      />
-    </SafeAreaView>
-  );
+      <SafeAreaView>
+          <FlatList
+              data={pokemons}
+              renderItem={({item, index}) => {
+                  return <Text ref={index}>{item.name}</Text>;
+              }}
+          />
+      </SafeAreaView>
+  )
+
 };
 
 export default ListPokemons;

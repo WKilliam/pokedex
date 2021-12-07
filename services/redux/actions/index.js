@@ -8,15 +8,13 @@ export const getPokemons = () => {
       if (response.results) {
         dispatch({
           type: GET_POKEMONS,
-          payload: response.data,
+          payload: response.results,
         });
       } else {
         console.log('Unable to fetch data from the API BASE URL!');
       }
     };
-    // eslint-disable-next-line no-unreachable
   } catch (error) {
-    // Add custom logic to handle errors
     console.log(error);
   }
 };

@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 
 // Redux Persist
@@ -8,11 +8,12 @@ import Reducer from '../reducers/index';
 
 const persistConfig = {
   key: 'root',
-  version: 0,
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, Reducer);
+const rootReducer = combineReducers({
+  pokemonsReducer: persistReducer(persistConfig, Reducer)
+});
 
-export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 export const persistor = persistStore(store);
