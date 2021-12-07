@@ -1,15 +1,16 @@
-import React from 'react';
-
+import React, {useContext, useEffect, useState} from 'react';
 import {
+  Alert,
+  Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
-  Image,
   TouchableOpacity,
-  Alert,
-  ScrollView,
 } from 'react-native';
+import {AuthentificationsContext} from '../src/services/authentifications';
+import auth from '@react-native-firebase/auth';
 
 const onSubmit = () => {
   console.log('Touched');
@@ -30,6 +31,24 @@ const onSubmit = () => {
 };
 
 const Exo2 = () => {
+  const {user, setUser} = useContext(AuthentificationsContext);
+  const [init, setInit] = useState(true);
+
+  const onAuthStateChanged = user => {
+    setUser(user);
+    if (init) {
+      setInit(false);
+    }
+  };
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
+
+  if (init) {
+    return null;
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -56,6 +75,7 @@ const Exo2 = () => {
         />
         <TouchableOpacity style={styles.submitButton} onPress={onSubmit}>
           <Text style={styles.submitButtonText}>Envoyer</Text>
+          <Text style={styles.submitButtonText}>Inscription</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

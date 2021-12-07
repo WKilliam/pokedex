@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
+import Login from './src/view/Login';
 
 const App = () => {
-  return <></>;
+  return <Login />;
 };
 
 export default App;
