@@ -1,34 +1,38 @@
-import {FlatList, SafeAreaView, Text} from 'react-native';
-import {PokemonService} from '../services/api/pokemon';
-import {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPokemons} from '../services/redux/actions';
+import {useEffect} from 'react';
 
 const ListPokemons = () => {
-  const [pokemons, setPokemons] = useState(null);
+  const dispatch = useDispatch();
+  const {pokemons} = useSelector(state => state.pokemonsReducer);
+  const [isLoading, setIsLoading] = useState(true)
+
+  const fetchPokemons = async () => await dispatch(getPokemons())
 
   useEffect(() => {
-    async function getPokemons() {
-      const allPokemons = await PokemonService.getPokemons();
-      setPokemons(allPokemons);
-    }
+    if(!isLoading)
+        fetchPokemons();
 
-    getPokemons();
+    setIsLoading(false)
 
     console.log('Pokemons List : ', pokemons);
-  }, []);
+  }, [pokemons]);
+
+  if(isLoading) return <View/>
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <SafeAreaView>
-      {/* eslint-disable-next-line react/react-in-jsx-scope */}
-      <FlatList
-        data={[1, 2]}
-        renderItem={({item, index}) => {
-          // eslint-disable-next-line react/react-in-jsx-scope
-          return <Text ref={index}>{item}</Text>;
-        }}
-      />
-    </SafeAreaView>
-  );
+      <SafeAreaView>
+          <FlatList
+              data={pokemons}
+              renderItem={({item, index}) => {
+                  return <Text ref={index}>{item.name}</Text>;
+              }}
+          />
+      </SafeAreaView>
+  )
+
 };
 
 export default ListPokemons;
