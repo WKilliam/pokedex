@@ -1,24 +1,19 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {
-  Alert,
   Dimensions,
   ImageBackground,
+  StatusBar,
   StyleSheet,
   Text,
 } from 'react-native';
-import {Block, theme} from 'galio-framework';
+import {Block, Input, theme} from 'galio-framework';
 import {argonTheme, Images} from '../config';
 import {ButtonCustum, InputCustum} from '../components';
-import {validateEmail} from '../utils/StringUtils';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const {width, height} = Dimensions.get('screen');
-import {AuthContext} from '../services';
 
-const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const {login} = useContext(AuthContext);
+const LoginAssets = () => {
   return (
     <Block flex middle>
       <ImageBackground
@@ -27,15 +22,12 @@ const Login = () => {
         <Block safe flex middle>
           <Block style={styles.registerContainer}>
             <Block flex={1} middle>
-              <Text color="" size={12}>
-                Sign up with
-              </Text>
+              <Text style={styles.SignText}>◓ Se connecter avec ◓</Text>
               <Block row style={{marginTop: theme.SIZES.BASES}}>
                 <Block width={width * 0.8}>
                   <InputCustum
                     borderless
                     placeholder="Email"
-                    onChangeText={userEmail => setEmail(userEmail)}
                     icon={
                       <Icon
                         size={14}
@@ -50,60 +42,45 @@ const Login = () => {
               <Block row style={{marginTop: theme.SIZES.BASES}}>
                 <Block width={width * 0.8}>
                   <InputCustum
-                    password
                     borderless
-                    onChangeText={userPassword => setPassword(userPassword)}
                     placeholder="Password"
                     icon={
                       <Icon
                         size={16}
                         color={argonTheme.COLORS.ICON}
-                        name="padlock-unlocked"
-                        family="ArgonExtra"
+                        name="lock"
                         style={styles.inputIcons}
                       />
                     }
                   />
                 </Block>
               </Block>
-              <Text color="#8898AA" size={12}>
-                Sign up with
-              </Text>
+              <Text style={styles.SignText} />
               <Block row style={{marginTop: theme.SIZES.BASE}}>
-                <ButtonCustum
-                  style={styles.socialButtons}
-                  onPress={() => {
-                    if (validateEmail(email)) {
-                      login(email, password);
-                    } else {
-                      Alert.alert(
-                        "The email format isn't good exemple : email@gmail.com",
-                      );
-                    }
-                  }}>
+                <ButtonCustum style={styles.socialButtons}>
                   <Block row>
-                    <Text style={styles.socialTextButtons}>SignIn</Text>
+                    <Text style={styles.socialTextButtons}>Sign In</Text>
                   </Block>
                 </ButtonCustum>
               </Block>
               <Block flex={0.5} middle>
-                <Text color="#8898AA" size={12}>
-                  Sign up with
-                </Text>
+                <Text style={styles.SignText}>◓ Se connecter avec ◓</Text>
                 <ButtonCustum style={styles.socialButtons}>
                   <Block row>
-                    <Text style={styles.socialTextButtons}>SignUp</Text>
+                    <Text style={styles.socialTextButtons}>Sign Up</Text>
                   </Block>
                 </ButtonCustum>
                 <Block row style={{marginTop: theme.SIZES.BASE}}>
-                  <ButtonCustum style={styles.socialButtons}>
+                  <ButtonCustum style={styles.socialButtonsGoogle}>
                     <Block row>
-                      <Text style={styles.socialTextButtons}>Google</Text>
+                      <Text style={styles.socialTextButtonsGoogle}>Google</Text>
                     </Block>
                   </ButtonCustum>
-                  <ButtonCustum style={styles.socialButtons}>
+                  <ButtonCustum style={styles.socialButtonsFacebook}>
                     <Block row>
-                      <Text style={styles.socialTextButtons}>FaceBook</Text>
+                      <Text style={styles.socialTextButtonsFacebook}>
+                        Facebook
+                      </Text>
                     </Block>
                   </ButtonCustum>
                 </Block>
@@ -155,6 +132,51 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 14,
   },
+  socialButtonsGoogle: {
+    width: 120,
+    height: 40,
+    backgroundColor: argonTheme.COLORS.SIGNGOOGLE,
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+  },
+  socialTextButtonsGoogle: {
+    color: argonTheme.COLORS.WHITE,
+    fontWeight: '800',
+    fontSize: 14,
+  },
+  socialButtonsFacebook: {
+    width: 120,
+    height: 40,
+    backgroundColor: argonTheme.COLORS.SIGNFACEBOOK,
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+  },
+  socialTextButtonsFacebook: {
+    color: argonTheme.COLORS.WHITE,
+    fontWeight: '800',
+    fontSize: 14,
+  },
+  SignText: {
+    borderRadius: 5,
+    height: 27,
+    width: 250,
+    textAlign: 'center',
+    color: argonTheme.COLORS.WHITE,
+    fontWeight: '800',
+    fontSize: 23,
+  },
   inputIcons: {
     marginRight: 12,
   },
@@ -169,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginAssets;

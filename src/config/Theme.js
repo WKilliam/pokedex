@@ -10,7 +10,15 @@ export default {
     WARNING: '#FB6340',
     WHITE: '#FFFFFF',
     BLACK: '#000000',
-    PLANTE: "",
+    /**
+     * BUTTON
+     */
+    SIGNFACEBOOK: '#3b5998',
+    SIGNGOOGLE: '#DB4437',
+    /**
+     * TYPE POKEMON
+     */
+    PLANTE:'#5ab34f',
     FEU:"",
     EAU:"",
     ACIER:"",
@@ -21,7 +29,7 @@ export default {
     GLACE:"",
     INSECTE:"",
     NORMAL:"",
-    POISON:"",
+    POISON: '#B468CD',
     PSY:"",
     ROCHER:"",
     SOL:"",
