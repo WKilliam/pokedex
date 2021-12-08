@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useMemo, useCallback} from 'react';
 
 import {
   SafeAreaView,
@@ -11,25 +11,32 @@ import {
   ScrollView,
 } from 'react-native';
 
-const onSubmit = () => {
-  console.log('Touched');
-
-  Alert.alert(
-    'Inscription',
-    'Inscription enregistrée',
-    [
-      {
-        text: 'Fermer',
-        style: 'cancel',
-      },
-    ],
-    {
-      cancelable: true,
-    },
-  );
-};
-
 const Exo2 = () => {
+  const [firstName, setfirstName] = useState(null);
+  const [lastName, setlastName] = useState(null);
+  const [password, setpassword] = useState(false);
+  const [confirmPassword, setconfirmPassword] = useState(null);
+  const [verifPassword, setverifPassword] = useState(true);
+
+  useEffect(() => {
+    setverifPassword(password.length > 3);
+  }, [password]);
+
+  const verifConfirmPassword = useMemo(() => {
+    return password === confirmPassword;
+  }, [password, confirmPassword]);
+
+  const alerteButton = useCallback(() => {
+    return Alert.alert(
+      'Bonjour  ' +
+        firstName +
+        '  ' +
+        lastName +
+        ' votre Mot De Passe est : ' +
+        password,
+    );
+  }, [firstName, lastName, password]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -42,27 +49,41 @@ const Exo2 = () => {
           }}
           style={styles.profileImg}
         />
-        <TextInput placeholder="Prenom" style={styles.inputs} />
-        <TextInput placeholder="Nom" style={styles.inputs} />
+        <TextInput
+          placeholder="Prénom"
+          style={styles.inputs}
+          value={firstName}
+          onChangeText={e => setfirstName(e)}
+        />
+        <TextInput
+          placeholder="Nom"
+          style={styles.inputs}
+          value={lastName}
+          onChangeText={e => setlastName(e)}
+        />
         <TextInput
           secureTextEntry={true}
           placeholder="Mot de passe"
-          style={styles.inputs}
+          style={verifPassword ? styles.inputs : styles.inputserror}
+          value={password}
+          onChangeText={e => setpassword(e)}
         />
         <TextInput
           secureTextEntry={true}
           placeholder="Retaper mot de passe"
-          style={styles.inputs}
+          style={verifConfirmPassword ? styles.inputs : styles.inputserror}
+          value={confirmPassword}
+          onChangeText={e => setconfirmPassword(e)}
         />
-        <TouchableOpacity style={styles.submitButton} onPress={onSubmit}>
-          <Text style={styles.submitButtonText}>Envoyer</Text>
+        <TouchableOpacity style={styles.alerteButton} onPress={alerteButton}>
+          <Text style={styles.alerteButtonText}>Envoyer</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -85,16 +106,26 @@ const styles = StyleSheet.create({
     height: 40,
     width: '80%',
     backgroundColor: 'grey',
-    borderColor: 'darkgrey',
     padding: 6,
     marginTop: 40,
+    borderWidth: 2.5,
+    borderRadius: 3,
+  },
+  inputserror: {
+    height: 40,
+    width: '80%',
+    backgroundColor: 'grey',
+    borderColor: 'red',
+    padding: 6,
+    marginTop: 40,
+    borderWidth: 2.5,
     borderRadius: 3,
   },
   formulaireView: {
     width: '100%',
     alignItems: 'center',
   },
-  submitButton: {
+  alerteButton: {
     borderColor: 'grey',
     color: 'black',
     borderRadius: 5,
@@ -105,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
   },
-  submitButtonText: {
+  alerteButtonText: {
     textTransform: 'uppercase',
     textAlign: 'center',
   },
