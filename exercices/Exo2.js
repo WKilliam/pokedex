@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {AuthentificationsContext} from '../src/services/authentifications';
+import {AuthentificationsContext} from '../src/services/AuthContext';
 import auth from '@react-native-firebase/auth';
 
 const onSubmit = () => {

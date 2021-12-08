@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {
+  Alert,
   Dimensions,
   ImageBackground,
-  StatusBar,
   StyleSheet,
   Text,
 } from 'react-native';
-import {Block, Input, theme} from 'galio-framework';
+import {Block, theme} from 'galio-framework';
 import {argonTheme, Images} from '../config';
 import {ButtonCustum, InputCustum} from '../components';
+import {validateEmail} from '../utils/StringUtils';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const {width, height} = Dimensions.get('screen');
+import {AuthContext} from '../services';
 
 const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const {login} = useContext(AuthContext);
   return (
     <Block flex middle>
       <ImageBackground
@@ -30,6 +35,7 @@ const Login = () => {
                   <InputCustum
                     borderless
                     placeholder="Email"
+                    onChangeText={userEmail => setEmail(userEmail)}
                     icon={
                       <Icon
                         size={14}
@@ -44,8 +50,10 @@ const Login = () => {
               <Block row style={{marginTop: theme.SIZES.BASES}}>
                 <Block width={width * 0.8}>
                   <InputCustum
+                    password
                     borderless
-                    placeholder="Email"
+                    onChangeText={userPassword => setPassword(userPassword)}
+                    placeholder="Password"
                     icon={
                       <Icon
                         size={16}
@@ -62,7 +70,17 @@ const Login = () => {
                 Sign up with
               </Text>
               <Block row style={{marginTop: theme.SIZES.BASE}}>
-                <ButtonCustum style={styles.socialButtons}>
+                <ButtonCustum
+                  style={styles.socialButtons}
+                  onPress={() => {
+                    if (validateEmail(email)) {
+                      login(email, password);
+                    } else {
+                      Alert.alert(
+                        "The email format isn't good exemple : email@gmail.com",
+                      );
+                    }
+                  }}>
                   <Block row>
                     <Text style={styles.socialTextButtons}>SignIn</Text>
                   </Block>
