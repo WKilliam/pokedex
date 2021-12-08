@@ -2,11 +2,10 @@ import React from 'react';
 import {
   Dimensions,
   ImageBackground,
-  StatusBar,
   StyleSheet,
   Text,
 } from 'react-native';
-import {Block, Input, theme} from 'galio-framework';
+import {Block,  theme} from 'galio-framework';
 import {argonTheme, Images} from '../config';
 import {ButtonCustum, InputCustum} from '../components';
 import Icon from 'react-native-vector-icons/AntDesign';

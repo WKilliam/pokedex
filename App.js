@@ -10,10 +10,10 @@ import React, {useEffect, useState} from 'react';
 // Redux Imports
 import {useDispatch} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import Routes from './navigation/Routes';
+import Routes from './src/navigation/Routes';
 // Modify to add persistor
-import {persistor} from './services/redux/store/index';
-import {getPokemons} from "./services/redux/actions";
+import {persistor} from './src/services/redux/store/index';
+import {getPokemons} from "./src/services/redux/actions";
 import {Text, View} from "react-native";
 
 const App = () => {
