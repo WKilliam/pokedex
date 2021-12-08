@@ -7,10 +7,16 @@
  */
 
 import React from 'react';
-import Login from './src/view/Login';
+import Cards from './src/components/Cards';
+import {View} from 'react-native';
 
 const App = () => {
-  return <Login />;
+  return (
+    <>
+      <Cards />
+      <Cards />
+    </>
+  );
 };
 
 export default App;
