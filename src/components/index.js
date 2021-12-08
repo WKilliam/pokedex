@@ -1,5 +1,4 @@
 import ButtonCustum from './ButtonCustum';
-import Icon from './Icon';
-// import Input from './Input';
+import InputCustum from './InputCustum';
 
-export {ButtonCustum, Icon};
+export {ButtonCustum, InputCustum};
