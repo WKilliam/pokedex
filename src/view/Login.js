@@ -61,10 +61,22 @@ const Login = () => {
               <Text color="#8898AA" size={12}>
                 Sign up with
               </Text>
+              <Block row style={{marginTop: theme.SIZES.BASE}}>
+                <ButtonCustum style={styles.socialButtons}>
+                  <Block row>
+                    <Text style={styles.socialTextButtons}>SignIn</Text>
+                  </Block>
+                </ButtonCustum>
+              </Block>
               <Block flex={0.5} middle>
                 <Text color="#8898AA" size={12}>
                   Sign up with
                 </Text>
+                <ButtonCustum style={styles.socialButtons}>
+                  <Block row>
+                    <Text style={styles.socialTextButtons}>SignUp</Text>
+                  </Block>
+                </ButtonCustum>
                 <Block row style={{marginTop: theme.SIZES.BASE}}>
                   <ButtonCustum style={styles.socialButtons}>
                     <Block row>
