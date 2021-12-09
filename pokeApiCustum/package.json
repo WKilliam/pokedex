@@ -1,0 +1,20 @@
+{
+  "name": "pokeapicustum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "createData": "node data/create.js",
+    "pokApi": "node ./controller/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "description": "",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.1.0",
+    "mysql": "^2.18.1"
+  }
+}
