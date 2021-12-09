@@ -1,87 +1,79 @@
-import React, {useContext, useRef, useState} from 'react';
-import {
-  Alert,
-  Animated,
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {Block, theme} from 'galio-framework';
-import {argonTheme, Images} from '../config';
-import SafeAreaView from 'react-native/Libraries/Components/SafeAreaView/SafeAreaView';
-import {Button} from 'galio-framework';
-const {width, height} = Dimensions.get('screen');
+/**
+ * comment
+ */
+import React, { useState } from "react";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Block } from "galio-framework";
+import { argonTheme } from "../config";
 
-const Cards = () => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+const { width, height } = Dimensions.get("screen");
 
-  const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 5000,
-    }).start();
-  };
+const Cards = ({ data }) => {
 
-  const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 3 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 3000,
-    }).start();
-  };
+
+
+  // Within your render function
   return (
-    <Block middle>
-      <View style={styles.cardContainer}>
-        <Block flex left>
-          <View style={styles.circle}>
+    <TouchableOpacity
+      style={{ marginTop: 30 }}
+      onPress={() => console.log("test")}>
+      <Block style={{ flex: 1, margin: 5, height: 130 }}>
+        <Block style={{ marginLeft: width / 20 }}>
+          <Block>
             <Image
+              style={{ marginLeft: 10 }}
               source={{
-                uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png',
-                width: 80,
-                height: 80,
+                uri:
+                  data.sprite ||
+                  "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
+                width: 125,
+                height: 125,
               }}
             />
-          </View>
+            <Image
+              style={styles.pokeballPosition}
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/287/287221.png",
+                width: 100,
+                height: 100,
+              }}
+            />
+          </Block>
+          <Block
+            style={{
+              width: 125,
+              height: 40,
+              marginLeft: width / 25,
+            }}>
+            <Text style={styles.textStyle}>{data.name}</Text>
+          </Block>
         </Block>
-      </View>
-    </Block>
+      </Block>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  circle: {
-    marginTop:5,
-    marginLeft:5,
-    width: 80,
-    height: 80,
+  textStyle: {
+    marginTop: 5,
+    textAlign: "center",
+    fontSize: 18,
+    borderColor: argonTheme.COLORS.SIGNFACEBOOK,
+    color: argonTheme.COLORS.ERROR,
+    // backgroundColor: argonTheme.COLORS.SIGNFACEBOOK,
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  pokeballPosition: {
+    marginTop: -125,
+    marginLeft: 7,
+    width: 130,
+    height: 130,
     borderRadius: 100 / 2,
-  },
-  cardContainer: {
-    marginTop: 10,
-    width: width * 0.95,
-    height: height / 9,
-    backgroundColor: argonTheme.COLORS.INPUT,
-    borderRadius: 10,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  fadingContainer: {
-    padding: 20,
-    backgroundColor: 'powderblue',
-  },
-  fadingText: {
-    fontSize: 28,
-  },
-  buttonRow: {
-    flexBasis: 100,
-    justifyContent: 'space-evenly',
-    marginVertical: 16,
+    zIndex: -2,
+    opacity: 0.9,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 });
 
