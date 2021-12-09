@@ -1,17 +1,16 @@
-import axios from 'axios';
-import {API_HOST} from '@env';
+import axios from "axios";
 
 /**
  * This page contains all the types of request and response
  *
  */
-const BASE_URL = API_HOST ? API_HOST : 'localhost';
+const BASE_URL = "http://localhost:3000";
 
 const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    'Content-type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    "Content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
 
   withCredentials: true,
