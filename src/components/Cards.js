@@ -11,7 +11,7 @@ const Cards = ({ data, onPress }) => {
   // Within your render function
   return (
     <TouchableOpacity
-        onPress={onPress}
+      onPress={onPress}
       style={{ marginTop: 30 }}>
       <Block style={{ flex: 1, margin: 5, height: 130 }}>
         <Block style={{ marginLeft: width / 20 }}>
