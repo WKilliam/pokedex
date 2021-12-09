@@ -1,18 +1,25 @@
-import React from 'react';
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-} from 'react-native';
-import {Block,  theme} from 'galio-framework';
+import React, {useEffect, useCallback} from 'react';
+import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
+import {Block, theme} from 'galio-framework';
 import {argonTheme, Images} from '../config';
 import {ButtonCustum, InputCustum} from '../components';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from 'react-native-google-signin';
+import {AuthService} from '../services/api/auth';
 const {width, height} = Dimensions.get('screen');
+import {useSelector} from 'react-redux';
 
 const LoginAssets = () => {
+  const useAuthService = AuthService();
+
+  const _login = () => {
+    useAuthService.googleLogin();
+  };
+
   return (
     <Block flex middle>
       <ImageBackground
@@ -70,18 +77,19 @@ const LoginAssets = () => {
                   </Block>
                 </ButtonCustum>
                 <Block row style={{marginTop: theme.SIZES.BASE}}>
-                  <ButtonCustum style={styles.socialButtonsGoogle}>
-                    <Block row>
-                      <Text style={styles.socialTextButtonsGoogle}>Google</Text>
-                    </Block>
-                  </ButtonCustum>
-                  <ButtonCustum style={styles.socialButtonsFacebook}>
+                  <GoogleSigninButton
+                    style={{width: 200, height: 60}}
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
+                    onPress={_login}
+                  />
+                  {/* <ButtonCustum style={styles.socialButtonsFacebook}>
                     <Block row>
                       <Text style={styles.socialTextButtonsFacebook}>
                         Facebook
                       </Text>
                     </Block>
-                  </ButtonCustum>
+                  </ButtonCustum> */}
                 </Block>
               </Block>
             </Block>

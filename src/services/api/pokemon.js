@@ -6,8 +6,8 @@ import api from './api';
 export const PokemonService = {
   getPokemons: () => api.get('/pokemon?limit=1118'),
 
-  getPokemonById: id =>
-    api.get(`/pokemon/${id}`).then(data => {
+  getPokemonByName: name =>
+    api.get(`/pokemon/${name}`).then(data => {
       return data;
     }),
 };
