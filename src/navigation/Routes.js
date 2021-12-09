@@ -5,6 +5,7 @@ import AppNavigation from "./AppNavigation";
 import { useSelector } from "react-redux";
 import ListPokemons from "../view/ListPokemons";
 import PokemonInformations from "../view/PokemonInformations";
+import RequireAuth from "./RequireAuth";
 
 const Routes = () => {
   const store = useSelector(state => state.auth);
@@ -14,7 +15,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {!store.auth.isLogged ? <PokemonInformations /> : <AppNavigation />}
+      {store.auth.isLogged ? <RequireAuth /> : <AppNavigation />}
     </NavigationContainer>
   );
 };

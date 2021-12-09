@@ -5,18 +5,14 @@ import React, { useState } from "react";
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Block } from "galio-framework";
 import { argonTheme } from "../config";
-
 const { width, height } = Dimensions.get("screen");
 
-const Cards = ({ data }) => {
-
-
-
+const Cards = ({ data, onPress }) => {
   // Within your render function
   return (
     <TouchableOpacity
-      style={{ marginTop: 30 }}
-      onPress={() => console.log("test")}>
+        onPress={onPress}
+      style={{ marginTop: 30 }}>
       <Block style={{ flex: 1, margin: 5, height: 130 }}>
         <Block style={{ marginLeft: width / 20 }}>
           <Block>

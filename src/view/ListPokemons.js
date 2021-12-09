@@ -1,8 +1,7 @@
 import React from "react";
 import { FlatList } from "react-native";
 import Cards from "../components/Cards";
-import { Block ,NavBar} from "galio-framework";
-
+import {Block, Button} from "galio-framework";
 
 const data = [
   {
@@ -57,28 +56,19 @@ const data = [
   }
 ];
 
-const ListPokemons = () => {
+const ListPokemons = ({navigation}) => {
+
   // const store = useSelector(state => data);
-  const renderItem = ({ item }) => <Cards data={item} />;
+  const renderItem = ({ item }) => <Cards onPress={() => navigation.navigate('Info', item)} data={item} />;
   return (
     <Block>
-      <Block>
-        <NavigationBar
-          title='Main title'
-          height={50}
-          leftButtonTitle='back'
-          rightButtonTitle='forward'
-        />
-      </Block>
-      <Block>
-        <FlatList
-          style={{ margin: 5 }}
-          data={data}
-          numColumns={2}
-          keyExtractor={(item, index) => item.id}
-          renderItem={renderItem}
-        />
-      </Block>
+      <FlatList
+        style={{ margin: 5 }}
+        data={data}
+        numColumns={2}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderItem}
+      />
     </Block>
   );
 
