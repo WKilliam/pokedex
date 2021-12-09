@@ -6,13 +6,15 @@ import {useSelector} from 'react-redux';
 import RequireAuth from './RequireAuth';
 
 const Routes = () => {
-  const {auth} = useSelector(state => state.auth);
+
+  const {auth} = useSelector(state => state);
+  useEffect(() => {}, [auth]);
 
   useEffect(() => {}, [auth]);
   console.log(auth.isLogged, 'iciiiiiiiiiiiiiiii');
   return (
     <NavigationContainer>
-      {auth.isLogged ? <AppNavigation /> : <RequireAuth />}
+      {!auth.isLogged ? <RequireAuth /> : <AppNavigation />}
     </NavigationContainer>
   );
 };
