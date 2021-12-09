@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Block } from "galio-framework";
-import { Dimensions, FlatList, Image, StyleSheet, Text } from "react-native";
+import {Dimensions, FlatList, Image, StyleSheet, Text, View} from "react-native";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -39,13 +39,16 @@ const PokemonInformations = () => {
     },
   ];
   // const [number, setNumber] = useState(JSON.parse(data[0].type).length);
-  const render = ({item}) =><Text>{item}</Text>
-    // <Image
-    //   style={styles.imageView}
-    //   source={{
-    //     uri: types[item.toUpperCase()] || "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
-    //   }}
-    // />;
+  const render = ({item}) =>
+      <Block flex>
+        <Text>{item}</Text>
+        <Image
+          style={styles.imageType}
+          source={{
+            uri: types[item.toUpperCase()] || "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
+          }}
+        />
+      </Block>;
   return (
     <Block flex middle>
       <Block flex middle>
@@ -62,13 +65,16 @@ const PokemonInformations = () => {
         </Text>
 
       </Block>
-      <FlatList style={{marginTop:-100}} data={JSON.parse(data[0].type)} renderItem={render}/>
+      <FlatList data={JSON.parse(data[0].type)} numColumns={JSON.parse(data[0].type.length)} renderItem={render}/>
     </Block>
   );
 };
 
 const styles = StyleSheet.create({
-
+  imageType: {
+    width: 35,
+    height: 35
+  },
   imageView: {
     top: -10,
     width: 200,
@@ -76,7 +82,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 50,
-    top: -10,
     fontFamily: "Arial",
   },
 });
