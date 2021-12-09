@@ -6521,6 +6521,11 @@ react-native-font@^1.0.2:
   resolved "https://registry.yarnpkg.com/react-native-font/-/react-native-font-1.0.2.tgz#7a4fe7597f09f74d60060b7c136d093cb8524138"
   integrity sha512-ACQhjijrevntUCa68i+sWr9BizDaAyUjSmH8Fqq0M1FDM9ijlDWin8U051iNUm1I0Io57r0T90d1R99NTg5dfg==
 
+react-native-google-signin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.1.tgz#4281940eee88602b0181dd49affdf8c92980c85c"
+  integrity sha512-6l3fiLdX/bfhh0BoxGq+jGkagFsO+mrE/eRV4+3/0k8+FDxO90vdPpQdDiwlM5vWXRxWthTzMM09/jHw+4cvNw==
+
 react-native-ratings@8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-8.0.4.tgz#efd5ebad8acc08bf98d34d39b18fb7a6813ef991"
@@ -6694,6 +6699,11 @@ recast@^0.20.3:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux-debounced@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/redux-debounced/-/redux-debounced-0.5.0.tgz#4dde27a3e66ea428afe78215f30a27f22714605b"
+  integrity sha512-O2anhB0A6yQZH19uLETFtajcUQLcyiJcgC0hHSoFr5T3hWGtt0C5s6KNnb2RX51MwCh5VCl9ehZTv91F/rsZww==
 
 redux-persist@^6.0.0:
   version "6.0.0"

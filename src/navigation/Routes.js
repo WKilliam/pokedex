@@ -1,14 +1,18 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RequireAuth from './RequireAuth';
 import AppNavigation from './AppNavigation';
-
-const auth = false;
+import {useSelector} from 'react-redux';
 
 const Routes = () => {
+  const store = useSelector(state => state.auth);
+
+  useEffect(() => {}, [store]);
+
   return (
     <NavigationContainer>
-      {auth ? <AppNavigation /> : <RequireAuth />}
+      {!store.auth.isLogged ? <RequireAuth /> : <AppNavigation />}
     </NavigationContainer>
   );
 };
