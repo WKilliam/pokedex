@@ -6495,6 +6495,11 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-contacts@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-7.0.3.tgz#6677a892f03a57316e81b68eb416d86a5f14d3b5"
+  integrity sha512-4favQKHnm3boukTbroFoIt9fyDtrJ4kFSTgeMaUk7oxukts+S+By1M5eJU13cizkQZHqL1sM8SOkKdy4N4Og+w==
+
 react-native-dotenv@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.3.0.tgz#fb1f50347be6ac0714a5e4772fad538c01ffb423"
