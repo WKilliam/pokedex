@@ -55,7 +55,10 @@ export const AuthService = () => {
 
     localLogin: async (email, password) => {
       try {
-        const user = await auth().signInWithEmailAndPassword(email, password);
+        const user = await auth().signInWithEmailAndPassword(
+          email.trim(),
+          password,
+        );
         console.log(user);
         _login(user);
       } catch (exception) {
@@ -65,7 +68,7 @@ export const AuthService = () => {
 
     register: async (email, password) => {
       try {
-        await auth().createUserWithEmailAndPassword(email, password);
+        await auth().createUserWithEmailAndPassword(email.trim(), password);
       } catch (exception) {
         console.log(exception);
       }
