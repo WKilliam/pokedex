@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Block } from "galio-framework";
 import { Dimensions, FlatList, Image, StyleSheet, Text, Button } from "react-native";
 import SafeAreaView from "react-native/Libraries/Components/SafeAreaView/SafeAreaView";
@@ -6,19 +6,26 @@ import { createObjectType } from "../utils/ThemeUtlils";
 import CardsType from "../components/CardsType";
 import CardsAbility from "../components/CardAbility";
 import {_getContacts} from "../services/natifs/contacts";
+import AuthReducerFunctions from "../services/redux/actions/auth";
+import {useDispatch, useSelector} from "react-redux";
 
 const PokemonInformations = ({ route }) => {
 
-  const [details, setDetails] = useState(route.params);
-  const [detailsTypes, setDetailsTypes] = useState(JSON.parse(details.type));
-  const [colorObject, setColorObject] = useState({
+  const dispatch = useDispatch();
+  const toggleFavorites = (array) => dispatch(AuthReducerFunctions.toggleFavorites(array));
+  const favoritesArray = useSelector(state => state.auth.favorites);
+
+useEffect(()=> {
+
+}, [favoritesArray])
+  const [details, ] = useState(route.params);
+  const [detailsTypes, ] = useState(JSON.parse(details.type));
+  const [colorObject, ] = useState({
     color: createObjectType(detailsTypes[0]).color,
     image: createObjectType(detailsTypes[0]).image,
   });
-  const [color, setColor] = useState(colorObject.color);
-  const [detailsAbilities, setDetailsAbilities] = useState(JSON.parse(details.abilities));
-  const [tabTypeObject, setTabTypeObject] = useState(howManyType(detailsTypes));
-  const [tabAbility,setTabAbility] = useState(howManyAbility(detailsAbilities))
+  const [color, ] = useState(colorObject.color);
+  const [detailsAbilities, ] = useState(JSON.parse(details.abilities));
 
   const howManyType = (tabType) => {
     let tabobjectType = [];
@@ -45,12 +52,8 @@ const PokemonInformations = ({ route }) => {
     return tabobjectAbility;
   };
 
-  console.log(tabAbility);
-
-  const colorCreation = (type) => {
-    let value = createObjectType(type);
-    setColor(value);
-  };
+  const [tabTypeObject, ] = useState(howManyType(detailsTypes));
+  const [tabAbility,] = useState(howManyAbility(detailsAbilities))
 
   const renderCardsType = ({ item }) => <CardsType
     text={item.text}
@@ -62,6 +65,24 @@ const PokemonInformations = ({ route }) => {
     effect={item.effect}
     language={item.language}
   />;
+
+  const pokemonsFavorites = () => {
+
+    const array = [...favoritesArray]
+    favoritesArray.includes(details.name)
+        ? array.splice(array.indexOf(details.name), 1)
+        : array.push(details.name)
+
+    toggleFavorites(array);
+  };
+
+  const isFavorites = () => {
+    return !!favoritesArray.includes(details.name);
+  }
+
+  const Favoris = ({onPress}) => {
+    return isFavorites() ? <Button title={'Retirer des favoris'} onPress={() => onPress()}/> : <Button title={'Ajouter aux favoris'} onPress={() => onPress()}/>
+  }
 
   return (
     <SafeAreaView>
@@ -100,6 +121,7 @@ const PokemonInformations = ({ route }) => {
       >
         <Text style={styles.text}>
           {details.name.toUpperCase()}
+          <Favoris onPress={pokemonsFavorites} />
         </Text>
       </Block>
 

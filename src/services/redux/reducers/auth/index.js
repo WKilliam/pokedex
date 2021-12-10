@@ -13,6 +13,7 @@ function authReducer(state = initialState, action) {
     case 'LOGOUT':
       return {...state, user: {}, isLogged: false};
     case 'FAVORITES':
+      console.log(action, "actionnnnnnnnn")
       return {...state, favorites: action.favorites};
     default:
       return state;
