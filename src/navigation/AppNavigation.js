@@ -5,6 +5,7 @@ import PokemonInformations from '../view/PokemonInformations';
 import {AuthService} from '../services/api/auth';
 import WhoThatPokemon from '../view/WhoThatPokemon';
 import {Button, View} from 'react-native';
+import Readme from "../view/Readme";
 
 function AppNavigation() {
   const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ function AppNavigation() {
       />
       <Stack.Screen name="Info" component={PokemonInformations} />
       <Stack.Screen name="Game" component={WhoThatPokemon} />
+      <Stack.Screen name="ReadMe" component={Readme} />
     </Stack.Navigator>
   );
 }

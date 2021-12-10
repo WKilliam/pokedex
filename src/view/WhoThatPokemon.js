@@ -91,44 +91,47 @@ const WhoThatPokemon = () => {
     }
   };
   return (
-    <SafeAreaView>
-      {pokemonToFond && pokemonToFond.name && (
-        <View style={styles.imageView}>
-          <Image
-            style={{marginLeft: 10}}
-            source={{
-              uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonToFond.id}.png`,
-              width: 125,
-              height: 125,
-            }}
-          />
-
-          {attempts != 0 && isPlayGame ? (
-            <TextInput
-              editable={!isRandomise}
-              contextMenuHidden={isRandomise}
-              value={name}
-              onChangeText={setName}
-              style={isRandomise ? styles.isRandomise : styles.input}
+    <Block middle>
+      <SafeAreaView>
+        {pokemonToFond && pokemonToFond.name && (
+          <View style={styles.imageView}>
+            <Image
+              style={{marginLeft: 10}}
+              source={{
+                uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonToFond.id}.png`,
+                width: 125,
+                height: 125,
+              }}
             />
-          ) : (
-            <Text>{pokemonToFond.name}</Text>
-          )}
-          <Text style={{margin: 'auto'}}>{gameMessage}</Text>
-        </View>
-      )}
-      {isPlayGame && attempts > 0 ? (
-        <Button
-          title={'Valide'}
-          onPress={() => onSubmitResponse()}
-          disabled={name.length <= 0}></Button>
-      ) : (
-        <Button
-          title={'Jouer'}
-          onPress={() => setPokemon()}
-          disabled={!randomPokemons.length || isPlayGame}></Button>
-      )}
-    </SafeAreaView>
+
+            {attempts != 0 && isPlayGame ? (
+              <TextInput
+                editable={!isRandomise}
+                contextMenuHidden={isRandomise}
+                value={name}
+                onChangeText={setName}
+                style={isRandomise ? styles.isRandomise : styles.input}
+              />
+            ) : (
+              <Text>{pokemonToFond.name}</Text>
+            )}
+            <Text style={{margin: 'auto'}}>{gameMessage}</Text>
+          </View>
+        )}
+        {isPlayGame && attempts > 0 ? (
+          <Button
+            title={'Valide'}
+            onPress={() => onSubmitResponse()}
+            disabled={name.length <= 0}></Button>
+        ) : (
+          <Button
+            title={'Jouer'}
+            onPress={() => setPokemon()}
+            disabled={!randomPokemons.length || isPlayGame}></Button>
+        )}
+      </SafeAreaView>
+    </Block>
+
   );
 };
 
