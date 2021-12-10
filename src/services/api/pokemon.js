@@ -25,12 +25,13 @@ export const PokemonService = {
     const ids = [];
 
     while (ids.length < 10) {
-      const randomValue = Math.floor(Math.random() * 1000);
+      const randomValue = Math.floor(Math.random() * 500);
       if (!ids.includes(randomValue)) {
         ids.push(randomValue);
       }
     }
+    const test = Promise.all(ids.map(id => pokeApi.get('/' + id)));
 
-    return await Promise.all(ids.map(id => pokeApi.get('/' + id)));
+    return test;
   },
 };

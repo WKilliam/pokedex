@@ -8,6 +8,7 @@ export const AuthService = () => {
   const dispatch = useDispatch();
 
   const _login = () => dispatch(AuthReducerFunctions.login());
+  const _logout = () => dispatch(AuthReducerFunctions.logout());
 
   return {
     googleLogin: async () => {
@@ -59,7 +60,6 @@ export const AuthService = () => {
           email.trim(),
           password,
         );
-        console.log(user);
         _login(user);
       } catch (exception) {
         console.log(exception);
@@ -76,7 +76,7 @@ export const AuthService = () => {
 
     localLogout: async () => {
       try {
-        AuthReducerFunctions.logout();
+        _logout();
       } catch (exception) {
         console.log(exception);
       }

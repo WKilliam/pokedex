@@ -24,7 +24,6 @@ const LoginAssets = ({navigation}) => {
   const [message, setMessage] = useState('');
 
   const _login = async () => {
-    console.log('iciiiiiiiiiiiiiiiii');
     await useAuthService.localLogin(email, password);
   };
 
