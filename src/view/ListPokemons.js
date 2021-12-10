@@ -44,6 +44,7 @@ const ListPokemons = ({navigation}) => {
           placeholder="Search"
           style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
         />
+        <Button title={'Who\'s that Pokemon ?'} onPress={() => navigation.navigate('Game')}/>
       </View>
       <FlatList
         style={{ margin: 5 }}
@@ -52,7 +53,6 @@ const ListPokemons = ({navigation}) => {
         keyExtractor={(item, index) => item.id}
         renderItem={renderItem}
       />
-      <Button title={'Who\'s that Pokemon ?'} onPress={() => navigation.navigate('Game')}/>
     </Block>
   );
 };
