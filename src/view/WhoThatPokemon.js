@@ -28,7 +28,7 @@ const WhoThatPokemon = () => {
     fetchRandomPokemons();
   }, [randomPokemons]);
 
-  if (!randomPokemons.length > 0)
+  if (loadRandomPokemons)
     return (
       <View>
         <Text>Chargement...</Text>

@@ -10,8 +10,6 @@ const Routes = () => {
   const {auth} = useSelector(state => state);
   useEffect(() => {}, [auth]);
 
-  useEffect(() => {}, [auth]);
-  console.log(auth.isLogged, 'iciiiiiiiiiiiiiiii');
   return (
     <NavigationContainer>
       {!auth.isLogged ? <RequireAuth /> : <AppNavigation />}
