@@ -4,7 +4,7 @@ import ListPokemons from '../view/ListPokemons';
 import PokemonInformations from '../view/PokemonInformations';
 import {AuthService} from '../services/api/auth';
 import WhoThatPokemon from '../view/WhoThatPokemon';
-import {Button, View} from "react-native";
+import {Button, View} from 'react-native';
 
 function AppNavigation() {
   const Stack = createNativeStackNavigator();
@@ -15,14 +15,6 @@ function AppNavigation() {
         name="Home"
         component={ListPokemons}
         options={{
-          headerTitle: props => (
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="Info"
-              color="black"
-            />
-          ),
-
           headerRight: () => (
             <View>
               <Button

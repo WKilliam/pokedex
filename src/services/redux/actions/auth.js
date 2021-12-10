@@ -14,7 +14,7 @@ const AuthReducerFunction = {
   logout: () => {
     return async dispatch => {
       dispatch({
-        type: LOGIN,
+        type: 'LOGOUT',
         user: {},
         isLogged: false,
       });
