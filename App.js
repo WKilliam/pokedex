@@ -14,12 +14,11 @@ import Routes from './src/navigation/Routes';
 // Modify to add persistor
 import {persistor} from './src/services/redux/store/index';
 import {getPokemons} from './src/services/redux/actions/pokemons';
-import {listPokemonJson} from "./src/utils/listPokemonJson";
-import {Platform, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 const App = () => {
   const dispatch = useDispatch();
-  const fetchPokemons = () => dispatch(Platform.OS === 'ios' ? getPokemons() : listPokemonJson);
+  const fetchPokemons = () => dispatch(getPokemons);
 
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, TextInput, View } from "react-native";
+import { FlatList, TextInput, View, Button } from "react-native";
 import Cards from "../components/Cards";
 import {Block} from "galio-framework";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const ListPokemons = ({navigation}) => {
     const tngCharacters = array.filter(character => {
       return character.name.includes(search.toLowerCase());
     });
-    console.log(search)
+
     if(search === ''){
       setArray(store.pokemons)
     }else{
