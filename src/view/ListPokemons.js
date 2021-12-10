@@ -58,7 +58,6 @@ const data = [
 
 const ListPokemons = ({navigation}) => {
 
-  // const store = useSelector(state => data);
   const renderItem = ({ item }) => <Cards onPress={() => navigation.navigate('Info', item)} data={item} />;
   return (
     <Block>
