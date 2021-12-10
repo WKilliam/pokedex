@@ -1,7 +1,7 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Button } from "react-native";
 import Cards from "../components/Cards";
-import {Block, Button} from "galio-framework";
+import {Block} from "galio-framework";
 
 const data = [
   {
@@ -68,6 +68,7 @@ const ListPokemons = ({navigation}) => {
         keyExtractor={(item, index) => item.id}
         renderItem={renderItem}
       />
+      <Button title={'Who\'s that Pokemon ?'} onPress={() => navigation.navigate('Game')}/>
     </Block>
   );
 

@@ -2,10 +2,9 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ListPokemons from '../view/ListPokemons';
 import PokemonInformations from '../view/PokemonInformations';
-import {Button} from 'react-native-elements/dist/buttons/Button';
-import {View, Text} from 'react-native';
-import AuthReducerFunction from '../services/redux/actions/auth';
 import {AuthService} from '../services/api/auth';
+import WhoThatPokemon from '../view/WhoThatPokemon';
+import {Button, View} from "react-native";
 
 function AppNavigation() {
   const Stack = createNativeStackNavigator();
@@ -35,6 +34,7 @@ function AppNavigation() {
         }}
       />
       <Stack.Screen name="Info" component={PokemonInformations} />
+      <Stack.Screen name="Game" component={WhoThatPokemon} />
     </Stack.Navigator>
   );
 }
