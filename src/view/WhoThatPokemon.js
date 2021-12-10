@@ -18,7 +18,6 @@ const WhoThatPokemon = () => {
   const fetchRandomPokemons = async () => {
     try {
       const data = await PokemonService.get10RandomPokemon();
-
       setRandomPokemons(data);
       setLoadRandomPokemons(false);
     } catch (e) {
@@ -73,8 +72,9 @@ const WhoThatPokemon = () => {
 
   const onSubmitResponse = () => {
     let nbTry = attempts;
+    console.log('Pokemon to fond : ', pokemonToFond.name);
 
-    if (pokemonToFond.name.toLowerCase() == name.toLowerCase()) {
+    if (pokemonToFond.name.toLowerCase() === name.toLowerCase()) {
       setGameMessage('Vous avez gagné');
 
       setDataEndGame();
