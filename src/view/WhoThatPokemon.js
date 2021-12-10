@@ -16,8 +16,14 @@ const WhoThatPokemon = () => {
   const [gameMessage, setGameMessage] = useState('');
 
   const fetchRandomPokemons = async () => {
-    setRandomPokemons(await PokemonService.get10RandomPokemon());
-    setLoadRandomPokemons(false);
+    try {
+      const data = await PokemonService.get10RandomPokemon();
+
+      setRandomPokemons(data);
+      setLoadRandomPokemons(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const sleep = milliseconds => {
@@ -26,7 +32,7 @@ const WhoThatPokemon = () => {
 
   useEffect(() => {
     fetchRandomPokemons();
-  }, [randomPokemons]);
+  }, []);
 
   if (loadRandomPokemons)
     return (
