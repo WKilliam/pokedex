@@ -1,7 +1,6 @@
 import {Block} from 'galio-framework';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Image, StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {PokemonService} from '../services/api/pokemon';
 import PokemonInformations from './PokemonInformations';
