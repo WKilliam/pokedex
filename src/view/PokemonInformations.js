@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Block } from "galio-framework";
-import {Dimensions, FlatList, Image, StyleSheet, Text, View} from "react-native";
-
-const { width, height } = Dimensions.get("screen");
+import React from "react";
+import {Block, Button} from "galio-framework";
+import {FlatList, Image, StyleSheet, Text} from "react-native";
+import {_getContacts} from "../services/natifs/contacts";
 
 const types = {
   WATER: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pok%C3%A9mon_Water_Type_Icon.svg/768px-Pok%C3%A9mon_Water_Type_Icon.svg.png",
@@ -25,20 +24,10 @@ const types = {
   GLACE: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pok%C3%A9mon_Ice_Type_Icon.svg/1024px-Pok%C3%A9mon_Ice_Type_Icon.svg.png",
 };
 
-const PokemonInformations = () => {
-  const data = [
-    {
-      id: 1,
-      name: "bulbasaur",
-      url: "https://pokeapi.co/api/v2/pokemon/1/",
-      sprite:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      type: "[\"grass\",\"poison\"]",
-      abilities:
-        "[{\"effect\":\"When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.\",\"language\":\"en\"},{\"effect\":\"This Pokémon's Speed is doubled during strong sunlight.\\n\\nThis bonus does not count as a stat modifier.\",\"language\":\"en\"}]",
-    },
-  ];
-  // const [number, setNumber] = useState(JSON.parse(data[0].type).length);
+const PokemonInformations = ({route}) => {
+
+  const data = route.params;
+
   const render = ({item}) =>
       <Block flex>
         <Text>{item}</Text>
@@ -56,16 +45,17 @@ const PokemonInformations = () => {
           style={styles.imageView}
           source={{
             uri:
-              data[0].sprite ||
+              data.sprite ||
               "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
           }}
         />
         <Text style={styles.text}>
-          {data[0].name.toUpperCase()}
+          {data.name.toUpperCase()}
         </Text>
 
       </Block>
-      <FlatList data={JSON.parse(data[0].type)} numColumns={JSON.parse(data[0].type.length)} renderItem={render}/>
+      <FlatList data={JSON.parse(data.type)} numColumns={JSON.parse(data.type.length)} renderItem={render}/>
+      <Button title={'Partager'} onPress={() => _getContacts(data.name)}/>
     </Block>
   );
 };
