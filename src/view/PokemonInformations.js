@@ -16,7 +16,7 @@ const PokemonInformations = ({ route }) => {
   const favoritesArray = useSelector(state => state.auth.favorites);
 
   useEffect(()=> {}, [favoritesArray])
-  
+
   const [details, ] = useState(route.params);
   const [detailsTypes, ] = useState(JSON.parse(details.type));
   const [colorObject, ] = useState({
@@ -84,79 +84,77 @@ const PokemonInformations = ({ route }) => {
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Block middle>
-          <Image
-            style={{
-              width: Dimensions.get("window").width * 0.7,
-              height: Dimensions.get("window").width * 0.7,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            source={{
-              uri:
-                details.sprite ||
-                "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
-            }}
-          />
-          <Block style={{
-            marginTop: -270,
-            zIndex: -2,
-            backgroundColor: color,
-            borderRadius: Math.round(Dimensions.get("window").width + Dimensions.get("window").height) / 2,
+    <ScrollView>
+      <Block middle>
+        <Image
+          style={{
             width: Dimensions.get("window").width * 0.7,
             height: Dimensions.get("window").width * 0.7,
             justifyContent: "center",
             alignItems: "center",
-          }} />
+          }}
+          source={{
+            uri:
+              details.sprite ||
+              "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
+          }}
+        />
+        <Block style={{
+          marginTop: -270,
+          zIndex: -2,
+          backgroundColor: color,
+          borderRadius: Math.round(Dimensions.get("window").width + Dimensions.get("window").height) / 2,
+          width: Dimensions.get("window").width * 0.7,
+          height: Dimensions.get("window").width * 0.7,
+          justifyContent: "center",
+          alignItems: "center",
+        }} />
+      </Block>
+      <Block card middle
+             style={{
+               backgroundColor:color,
+               marginTop: 5,
+               marginLeft: 50,
+               marginRight: 50,
+             }}
+      >
+        <Text style={styles.text}>
+          {details.name.toUpperCase()}
+          <Favoris onPress={pokemonsFavorites} />
+        </Text>
+      </Block>
+
+      <SafeAreaView>
+        <Block middle style={{ marginRight: 15, marginLeft: 15, marginTop: 15, }}>
+          <FlatList
+            style={{ margin: 5 }}
+            data={tabTypeObject}
+            numColumns={tabTypeObject.length}
+            keyExtractor={(item, index) => item.id}
+            renderItem={renderCardsType}
+          />
         </Block>
-        <Block card middle
+        <Block middle
                style={{
-                 backgroundColor:color,
                  marginTop: 5,
                  marginLeft: 50,
                  marginRight: 50,
                }}
         >
           <Text style={styles.text}>
-            {details.name.toUpperCase()}
-            <Favoris onPress={pokemonsFavorites} />
+            Abilities
           </Text>
         </Block>
-
-        <SafeAreaView>
-          <Block middle style={{ marginRight: 15, marginLeft: 15, marginTop: 15, }}>
-            <FlatList
-              style={{ margin: 5 }}
-              data={tabTypeObject}
-              numColumns={tabTypeObject.length}
-              keyExtractor={(item, index) => item.id}
-              renderItem={renderCardsType}
-            />
-          </Block>
-          <Block middle
-                 style={{
-                   marginTop: 5,
-                   marginLeft: 50,
-                   marginRight: 50,
-                 }}
-          >
-            <Text style={styles.text}>
-              Abilities
-            </Text>
-          </Block>
-          <Block middle style={{ marginRight: 15, marginLeft: 15, marginTop: 5 }}>
-            <FlatList
-              data={tabAbility}
-              keyExtractor={(item, index) => item.id}
-              renderItem={renderCardsAbility}
-            />
-          </Block>
-          <Button title={'Partager'} onPress={() => _getContacts(data.name)}/>
-        </SafeAreaView>
-      </ScrollView>
-    </SafeAreaView>
+        <Block middle style={{ marginRight: 15, marginLeft: 15, marginTop: 5 }}>
+          <FlatList
+            data={tabAbility}
+            keyExtractor={(item, index) => item.id}
+            renderItem={renderCardsAbility}
+          />
+        </Block>
+        <Button title={'Partager'} onPress={() => _getContacts(details.name)}/>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
