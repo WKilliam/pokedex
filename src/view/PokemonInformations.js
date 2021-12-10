@@ -84,7 +84,7 @@ const PokemonInformations = ({ route }) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView nestedScrollEnabled={true}>
       <Block middle>
         <Image
           style={{
