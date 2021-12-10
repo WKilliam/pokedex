@@ -23,6 +23,7 @@ const AuthReducerFunction = {
 
   toggleFavorites: arrayPokemons => {
     return async dispatch => {
+      console.log(arrayPokemons, 'textttttttttttttt')
       dispatch({
         type: 'FAVORITES',
         favorites: arrayPokemons,

@@ -6,15 +6,4 @@ const validateEmail = email => {
     );
 };
 
-// const dispatch = useDispatch();
-// const toggleFavorites = () =>
-//   dispatch(AuthReducerFunctions.toggleFavorites());
-//   const pokemonsFavorites = (pokemonsFavs, id) => {
-//     pokemonsFavs.includes(id)
-//       ? pokemonsFavs.filter(el => el !== id)
-//       : [...pokemonsFavs, id];
-
-//     toggleFavorites(pokemonsFavorites);
-//   };
-
 export {validateEmail};
