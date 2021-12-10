@@ -1,13 +1,9 @@
-import api from './api';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from 'react-native-google-signin';
+import {GoogleSignin, statusCodes} from 'react-native-google-signin';
 
 import AuthReducerFunctions from '../redux/actions/auth';
 import {useDispatch} from 'react-redux';
-import {CLIENT_ID} from '@env';
+import auth from '@react-native-firebase/auth';
+
 export const AuthService = () => {
   const dispatch = useDispatch();
 
@@ -25,9 +21,9 @@ export const AuthService = () => {
         });
 
         const data = await GoogleSignin.hasPlayServices();
-        _login({login: 'maaaaaaaaaa'});
 
         const {user} = await GoogleSignin.signIn();
+        _login(user);
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
           // user cancelled the login flow
@@ -56,27 +52,34 @@ export const AuthService = () => {
         console.error(error);
       }
     },
-  };
 
-  // localLogin: async (email, password) => {
-  //   try {
-  //     await auth().signInWithEmailAndPassword(email, password);
-  //   } catch (exception) {
-  //     console.log(exception);
-  //   }
-  // },
-  // register: async (email, password) => {
-  //   try {
-  //     await auth().createUserWithEmailAndPassword(email, password);
-  //   } catch (exception) {
-  //     console.log(exception);
-  //   }
-  // },
-  // localLlogout: async () => {
-  //   try {
-  //     await auth().signOut();
-  //   } catch (exception) {
-  //     console.log(exception);
-  //   }
-  // },
+    localLogin: async (email, password) => {
+      try {
+        const user = await auth().signInWithEmailAndPassword(
+          email.trim(),
+          password,
+        );
+        console.log(user);
+        _login(user);
+      } catch (exception) {
+        console.log(exception);
+      }
+    },
+
+    register: async (email, password) => {
+      try {
+        await auth().createUserWithEmailAndPassword(email.trim(), password);
+      } catch (exception) {
+        console.log(exception);
+      }
+    },
+
+    localLogout: async () => {
+      try {
+        AuthReducerFunctions.logout();
+      } catch (exception) {
+        console.log(exception);
+      }
+    },
+  };
 };

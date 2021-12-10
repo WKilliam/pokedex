@@ -1,23 +1,35 @@
-import React, {useEffect, useCallback} from 'react';
-import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  RefreshControl,
+} from 'react-native';
 import {Block, theme} from 'galio-framework';
 import {argonTheme, Images} from '../config';
 import {ButtonCustum, InputCustum} from '../components';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from 'react-native-google-signin';
+import {GoogleSigninButton} from 'react-native-google-signin';
 import {AuthService} from '../services/api/auth';
 const {width, height} = Dimensions.get('screen');
-import {useSelector} from 'react-redux';
 
-const LoginAssets = () => {
+const LoginAssets = ({navigation}) => {
   const useAuthService = AuthService();
 
-  const _login = () => {
-    useAuthService.googleLogin();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [isHidePassword, setIsHidePassword] = useState(true);
+  const [message, setMessage] = useState('');
+
+  const _login = async () => {
+    console.log('iciiiiiiiiiiiiiiiii');
+    await useAuthService.localLogin(email, password);
+  };
+
+  const _googleLogin = () => {
+    useAuthService.googleLogin(email, password);
   };
 
   return (
@@ -33,6 +45,8 @@ const LoginAssets = () => {
                 <Block width={width * 0.8}>
                   <InputCustum
                     borderless
+                    value={email}
+                    onChangeText={setEmail}
                     placeholder="Email"
                     icon={
                       <Icon
@@ -49,10 +63,14 @@ const LoginAssets = () => {
                 <Block width={width * 0.8}>
                   <InputCustum
                     borderless
+                    secureTextEntry={isHidePassword}
+                    value={password}
+                    onChangeText={setPassword}
                     placeholder="Password"
                     icon={
                       <Icon
                         size={16}
+                        onPress={() => setIsHidePassword(!isHidePassword)}
                         color={argonTheme.COLORS.ICON}
                         name="lock"
                         style={styles.inputIcons}
@@ -63,15 +81,24 @@ const LoginAssets = () => {
               </Block>
               <Text style={styles.SignText} />
               <Block row style={{marginTop: theme.SIZES.BASE}}>
-                <ButtonCustum style={styles.socialButtons}>
+                <ButtonCustum
+                  style={styles.socialButtons}
+                  onPress={() => _login()}>
                   <Block row>
                     <Text style={styles.socialTextButtons}>Sign In</Text>
                   </Block>
                 </ButtonCustum>
               </Block>
+
+              <Block>
+                <Text style={styles.error}> {message} </Text>
+              </Block>
+
               <Block flex={0.5} middle>
                 <Text style={styles.SignText}>◓ Se connecter avec ◓</Text>
-                <ButtonCustum style={styles.socialButtons}>
+                <ButtonCustum
+                  style={styles.socialButtons}
+                  onPress={() => navigation.navigate('Register')}>
                   <Block row>
                     <Text style={styles.socialTextButtons}>Sign Up</Text>
                   </Block>
@@ -81,7 +108,7 @@ const LoginAssets = () => {
                     style={{width: 200, height: 60}}
                     size={GoogleSigninButton.Size.Wide}
                     color={GoogleSigninButton.Color.Dark}
-                    onPress={_login}
+                    onPress={_googleLogin}
                   />
                   {/* <ButtonCustum style={styles.socialButtonsFacebook}>
                     <Block row>
@@ -120,6 +147,15 @@ const styles = StyleSheet.create({
     backgroundColor: argonTheme.COLORS.WHITE,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#ffffff',
+  },
+  disabledButton: {
+    opacity: 0.1,
+  },
+  activeButton: {
+    opacity: 1,
+  },
+  error: {
+    color: 'red',
   },
   socialButtons: {
     width: 120,
