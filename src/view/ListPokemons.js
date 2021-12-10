@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { FlatList, TextInput, View } from "react-native";
 import Cards from "../components/Cards";
-import {Block, Button} from "galio-framework";
+import {Block} from "galio-framework";
 import { useSelector } from "react-redux";
 
 const ListPokemons = ({navigation}) => {
   const store = useSelector(state => state.pokemons);
   const [array,setArray] = useState(store.pokemons)
   const [search,setSearch] = useState('')
+
   let updateSearch = (search) => {
     const tngCharacters = array.filter(character => {
       return character.name.includes(search.toLowerCase());
@@ -54,8 +55,6 @@ const ListPokemons = ({navigation}) => {
       <Button title={'Who\'s that Pokemon ?'} onPress={() => navigation.navigate('Game')}/>
     </Block>
   );
-
-
 };
 
 export default ListPokemons;
