@@ -1,13 +1,17 @@
 import {LOGIN} from '../../actions/auth';
 
 const initialState = {
-  auth: {isLogged: false},
+  isLogged: false,
+  favorites: [],
+  user: {},
 };
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      return {...state, auth: action.payload};
+      return {...state, user: action.user, isLogged: action.isLogged};
+    case 'FAVORITES':
+      return {...state, favorites: action.favorites};
     default:
       return state;
   }

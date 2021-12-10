@@ -5,7 +5,8 @@ const AuthReducerFunction = {
     return async dispatch => {
       dispatch({
         type: LOGIN,
-        payload: {user, isLogged: true},
+        user: user,
+        isLogged: true,
       });
     };
   },
@@ -14,7 +15,17 @@ const AuthReducerFunction = {
     return async dispatch => {
       dispatch({
         type: LOGIN,
+        user: {},
         isLogged: false,
+      });
+    };
+  },
+
+  toggleFavorites: arrayPokemons => {
+    return async dispatch => {
+      dispatch({
+        type: 'FAVORITES',
+        favorites: arrayPokemons,
       });
     };
   },
