@@ -5,10 +5,10 @@ export const getPokemons = () => {
   try {
     return async dispatch => {
       const response = await PokemonService.getPokemons();
-      if (response.results) {
+      if (response) {
         dispatch({
           type: GET_POKEMONS,
-          payload: response.results,
+          payload: response,
         });
       } else {
         console.log('Unable to fetch data from the API BASE URL!');

@@ -1,5 +1,3 @@
-# pokedex
-
 # Pokedex
 
 ## Comment lancer le projet ?
