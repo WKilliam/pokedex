@@ -14,7 +14,7 @@ const AuthReducerFunction = {
     return async dispatch => {
       dispatch({
         type: LOGIN,
-        payload: {isLogged: false},
+        isLogged: false,
       });
     };
   },
