@@ -4,12 +4,7 @@ import pokeApi from './pokeApi';
  * This page contains the user service
  */
 export const PokemonService = {
-  getPokemons: () => api.get('/pokemon?limit=1118'),
-
-  getPokemonByName: name =>
-    api.get(`/pokemon/${name}`).then(data => {
-      return data;
-    }),
+  getPokemons: () => api.get('/pokedex'),
 
   getPokemonByName: name =>
     api.get(`/pokemon/${name}`).then(data => {
