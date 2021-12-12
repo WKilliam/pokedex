@@ -1,27 +1,31 @@
 /**
  * comment
  */
-import React, { useState } from "react";
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Block } from "galio-framework";
-import { argonTheme } from "../config";
-const { width, height } = Dimensions.get("screen");
+import React from 'react';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {Block} from 'galio-framework';
+import {argonTheme} from '../config';
+const {width, height} = Dimensions.get('screen');
 
-const Cards = ({ data, onPress }) => {
+const Cards = ({data, onPress}) => {
   // Within your render function
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{ marginTop: 30 }}>
-      <Block style={{ flex: 1, margin: 5, height: 130 }}>
-        <Block style={{ marginLeft: width / 20 }}>
+    <TouchableOpacity onPress={onPress} style={{marginTop: 30}}>
+      <Block style={{flex: 1, margin: 5, height: 130}}>
+        <Block style={{marginLeft: width / 20}}>
           <Block>
             <Image
-              style={{ marginLeft: 10 }}
+              style={{marginLeft: 10}}
               source={{
                 uri:
-                  data.sprite ||
-                  "https://vacarme.hypotheses.org/files/2017/04/IMGintero.png",
+                  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data[0]}.png` ||
+                  'https://vacarme.hypotheses.org/files/2017/04/IMGintero.png',
                 width: 125,
                 height: 125,
               }}
@@ -29,7 +33,7 @@ const Cards = ({ data, onPress }) => {
             <Image
               style={styles.pokeballPosition}
               source={{
-                uri: "https://cdn-icons-png.flaticon.com/512/287/287221.png",
+                uri: 'https://cdn-icons-png.flaticon.com/512/287/287221.png',
                 width: 100,
                 height: 100,
               }}
@@ -41,7 +45,7 @@ const Cards = ({ data, onPress }) => {
               height: 40,
               marginLeft: width / 25,
             }}>
-            <Text style={styles.textStyle}>{data.name}</Text>
+            <Text style={styles.textStyle}>{data[1]}</Text>
           </Block>
         </Block>
       </Block>
@@ -52,7 +56,7 @@ const Cards = ({ data, onPress }) => {
 const styles = StyleSheet.create({
   textStyle: {
     marginTop: 5,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
     borderColor: argonTheme.COLORS.SIGNFACEBOOK,
     color: argonTheme.COLORS.ERROR,
@@ -68,8 +72,8 @@ const styles = StyleSheet.create({
     borderRadius: 100 / 2,
     zIndex: -2,
     opacity: 0.9,
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 });
 

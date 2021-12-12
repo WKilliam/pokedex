@@ -20,7 +20,7 @@ export const PokemonService = {
     const ids = [];
 
     while (ids.length < 10) {
-      const randomValue = Math.floor(Math.random() * 500);
+      const randomValue = Math.floor(Math.random() * 300);
       if (!ids.includes(randomValue)) {
         ids.push(randomValue);
       }

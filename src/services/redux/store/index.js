@@ -19,7 +19,7 @@ const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
 const rootReducer = combineReducers({
   pokemons: persistReducer(persistConfig, pokemons),
-  auth,
+  auth: persistReducer(persistConfig, auth),
 });
 
 const store = createStore(

@@ -18,7 +18,7 @@ import {Text, View} from 'react-native';
 
 const App = () => {
   const dispatch = useDispatch();
-  const fetchPokemons = () => dispatch(getPokemons);
+  const fetchPokemons = () => dispatch(getPokemons());
 
   const [isLoading, setIsLoading] = useState(true);
 
